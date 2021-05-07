@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<div class="row">
+	<div class="col-md-5">
+		<div class="card card-body">
+			<form action="/agregar" method="POST">
+				<div class="form-group">
+					<input type="text" name="nombre" placeholder="Nombre" class="form-control">
+				</div>
+				<div class="form-group">
+					<input type="text" name="precio" placeholder="Precio" class="form-control">
+				</div>
+				<div class="form-group">
+					<input type="text" name="cantidad" placeholder="Cantidad" class="form-control">
+				</div>
+				<div class="form-group">
+					<input type="text" name="reordenar" placeholder="Reordenar" class="form-control">
+				</div>
+				<div class="form-group ">
+					<center>
+						<button type="submit" class="btn btn-primary btn-block">
+					Guardar
+						</button>
+					</center>
+				</div>
+				
+			</form>
+		</div>
+	</div>
+	<div class="col-md-7" class="table table-striped table-bordered bg-black table-sm">
+		<table class="table table-striped ">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">Nombre</th>
+					<th scope="col">Precio</th>
+					<th scope="col">Cantidad</th>
+					<th scope="col">Reordenar</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for articulo in articulos %}
+				<tr>
+					<td>{{articulo.1}}</td>
+					<td>{{articulo.2}}</td>
+					<td>{{articulo.3}}</td>
+					<td>{{articulo.4}}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+
+
+{% endblock %}

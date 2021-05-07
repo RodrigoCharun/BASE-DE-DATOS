@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+{% block body %}
+<table>
+	<thead>
+		<tr>
+			<td>Fecha</td>
+			<td>Cantidad</td>
+			<td>Tipo</td>
+			<td>Nombre del articulo</td>
+			<td>ID del articulo</td>
+		</tr>
+	</thead>
+	<tbody>
+		{% for transaccion in transacciones %}
+		<tr>
+			<td>{{transaccion.1}}</td>
+			<td>{{transaccion.2}}</td>
+			<td>{{transaccion.3}}</td>
+			<td>{{transaccion.4}}</td>
+			<td>{{transaccion.5}}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+<a href="/generar_reporte">Volver</a>
+
+{% endblock %}

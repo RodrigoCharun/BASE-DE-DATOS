@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+{% block body %}
+	
+<div class="row">
+	<div class="col-md-5">
+
+		<div class="card card-body" align="center" >
+		
+			<div class="container pt-5 mb-5">
+				<a href="/agregar_dato" >AGREGAR ARTICULOS</a>
+			</div>
+			<div class="container pt-5 mb-5">
+				<a href="/vender_dato">VENDER ARTICULOS</a>
+			</div>	
+			<div class="container pt-5 mb-5">
+				<a href="/generar_reporte">REPORTE</a>
+			</div>
+
+		
+		</div>
+	</div>
+	<div class="col-md-7">
+	<div class="col-md-7" class="table table-striped table-bordered bg-black table-sm">
+		<table class="table table-striped ">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">Nombre</th>
+					<th scope="col">Precio</th>
+					<th scope="col">Cantidad</th>
+					<th scope="col">Reordenar</th>
+					<th scope="col">Operaciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for articulo in articulos %}
+				<tr>
+					<td>{{articulo.1}}</td>
+					<td>{{articulo.2}}</td>
+					<td>{{articulo.3}}</td>
+					<td>{{articulo.4}}</td>
+					<td>
+						<a href="/editar_dato/{{articulo.0}}" class="btn btn-secondary">EDITAR</a>
+						<a href="/eliminar_dato/{{articulo.0}}" class="btn btn-danger">ELIMINAR</a>
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+	</div>
+</div>
+
+
+
+
+{% endblock %}

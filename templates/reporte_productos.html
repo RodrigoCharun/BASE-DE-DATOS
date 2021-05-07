@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+{% block body %}
+<table>
+	<thead>
+		<tr>
+			<td>Nombre</td>
+			<td>Precio</td>
+			<td>Cantidad</td>
+			<td>Reordenar</td>
+		</tr>
+	</thead>
+	<tbody>
+		{% for articulo in articulos %}
+		<tr>
+			<td>{{articulo.1}}</td>
+			<td>{{articulo.2}}</td>
+			<td>{{articulo.3}}</td>
+			<td>{{articulo.4}}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+<a href="/generar_reporte">Volver</a>
+
+{% endblock %}

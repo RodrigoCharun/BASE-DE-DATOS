@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<div class="card card-body mb-5">
+		<form action="/actualizacion/{{articulo.0}}" method="POST">
+			<div class="form-group">
+				<input type="text" name="nombre" placeholder="Nombre" value={{articulo.1}} class="form-control">
+			</div>
+			<div class="form-group">
+				<input type="text" name="precio" placeholder="Precio" value={{articulo.2}} class="form-control">
+			</div>
+			<div class="form-group">
+				<input type="text" name="cantidad" placeholder="Cantidad" value={{articulo.3}} class="form-control">
+			</div>
+			<div class="form-group">	
+				<center>
+					<input type="text" name="reordenar" placeholder="Reordenar" value={{articulo.4}} class="form-control">
+				</center>
+				
+			</div>
+			<div class="form-group">
+				<center>
+					<button type="submit" class="btn btn-primary btn-block">
+						Guardar
+					</button>
+				</center>
+				
+			</div>
+		</form>
+</div>
+		
+
+
+{% endblock %}
