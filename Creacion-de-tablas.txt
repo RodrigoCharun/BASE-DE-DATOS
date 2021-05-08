@@ -23,7 +23,7 @@ CREATE TABLE transaccion
   cantidad Float NOT NULL,
   tipo Varchar(200) NOT NULL,
   articulo_nombre Varchar(20) NOT NULL,
-  articulo_id Int NOT NULL AUTO_INCREMENT,
+  articulo_id Int NOT NULL,
  PRIMARY KEY (transaccion_id)
 )
 ;
