@@ -9,7 +9,7 @@ app=Flask(__name__)
 #nos conectamos a MySQL
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_DB'] = 'trabajofinal'
+app.config['MYSQL_DB'] = 'trabajofinal2'
 mysql=MySQL(app)
 
 app.secret_key = 'mysecretkey' #permite agregar mensaje
@@ -37,7 +37,7 @@ def agregar():
 		precio = request.form['precio']
 		cantidad = request.form['cantidad']
 		reordenar = request.form['reordenar']
-		hoy=str(date.today())
+		hoy=date.today()
 		cur = mysql.connection.cursor()
 		cur.execute('select * from articulos where (nombre= %s and precio=%s and reordenar=%s)',(nombre,precio,reordenar))
 		if cur.fetchone() is None:
@@ -110,7 +110,7 @@ def vender():
 	if request.method == 'POST':
 		nombre = request.form['nombre']
 		cantidad = request.form['cantidad']
-		hoy=str(date.today())
+		hoy=date.today()
 		cur = mysql.connection.cursor()
 		cur.execute('''
 			UPDATE articulos

@@ -1,0 +1,36 @@
+-- Create tables section -------------------------------------------------
+
+-- Table articulos
+
+CREATE TABLE articulos
+(
+  articulo_id Int NOT NULL AUTO_INCREMENT,
+  nombre Varchar(250) NOT NULL,
+  precio Float NOT NULL,
+  cantidad Float NOT NULL,
+  reordenar Float NOT NULL,
+ PRIMARY KEY (articulo_id),
+ UNIQUE articulo_id (articulo_id)
+)
+;
+
+-- Table transaccion
+
+CREATE TABLE transaccion
+(
+  transaccion_id Int NOT NULL AUTO_INCREMENT,
+  fecha Varchar(250) NOT NULL,
+  cantidad Float NOT NULL,
+  tipo Varchar(200) NOT NULL,
+  articulo_nombre Varchar(20) NOT NULL,
+  articulo_id Int NOT NULL,
+ PRIMARY KEY (transaccion_id)
+)
+;
+
+-- Create relationships section ------------------------------------------------- 
+
+ALTER TABLE transaccion ADD CONSTRAINT Relationship1 FOREIGN KEY (articulo_id) REFERENCES articulos (articulo_id) ON DELETE NO ACTION ON UPDATE NO ACTION
+;
+
+ALTER TABLE transaccion ADD CONSTRAINT  FOREIGN KEY (articulo_id) REFERENCES articulos (articulo_id) ON DELETE NO ACTION ON UPDATE NO ACTION
