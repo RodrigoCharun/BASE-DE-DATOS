@@ -9,7 +9,7 @@ app=Flask(__name__)
 #nos conectamos a MySQL
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_DB'] = 'trabajofinal2'
+app.config['MYSQL_DB'] = 'trabajofinal'
 mysql=MySQL(app)
 
 app.secret_key = 'mysecretkey' #permite agregar mensaje
