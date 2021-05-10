@@ -1,3 +1,6 @@
+.blanco{
+	color: white;
+}
 body {
 background: #373B44;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to bottom, #4286f4, #373B44);  /* Chrome 10-25, Safari 5.1-6 */
