@@ -28,9 +28,3 @@ CREATE TABLE transaccion
 )
 ;
 
--- Create relationships section ------------------------------------------------- 
-
-ALTER TABLE transaccion ADD CONSTRAINT Relationship1 FOREIGN KEY (articulo_id) REFERENCES articulos (articulo_id) ON DELETE NO ACTION ON UPDATE NO ACTION
-;
-
-ALTER TABLE transaccion ADD CONSTRAINT  FOREIGN KEY (articulo_id) REFERENCES articulos (articulo_id) ON DELETE NO ACTION ON UPDATE NO ACTION
