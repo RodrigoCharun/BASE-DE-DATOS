@@ -37,6 +37,10 @@ def agregar():
 		precio = request.form['precio']
 		cantidad = request.form['cantidad']
 		reordenar = request.form['reordenar']
+		if nombre =="" or precio=="" or cantidad =="" or reordenar=="":
+			flash("recuerda llenar los datos de los campos")
+			return redirect(url_for('agregar_dato'))
+
 		hoy=date.today()
 		cur = mysql.connection.cursor()
 		cur.execute('select * from articulos where (nombre= %s and precio=%s and reordenar=%s)',(nombre,precio,reordenar))

@@ -1,6 +1,18 @@
 {% extends 'layout.html' %}
 {% block body %}
 	
+{% with messages= get_flashed_messages() %}
+
+{% if messages %}
+	<div class="alert alert-danger" role="alert">
+	{% for message in messages %}
+		{{ message }}
+	{% endfor %}
+	</div>>
+{% endif %}
+
+{% endwith %}
+
 <div class="row">
 	<div class="col-md-5">
 
@@ -39,7 +51,7 @@
 					<td>{{articulo.4}}</td>
 					<td>
 						<a href="/editar_dato/{{articulo.0}}" class="btn btn-secondary">EDITAR</a>
-						<a href="/eliminar_dato/{{articulo.0}}" class="btn btn-danger">ELIMINAR</a>
+						<a href="/eliminar_dato/{{articulo.0}}" class="btn btn-danger btn-delete">ELIMINAR</a>
 					</td>
 				</tr>
 				{% endfor %}
