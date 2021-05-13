@@ -4,11 +4,11 @@
 {% with messages= get_flashed_messages() %}
 
 {% if messages %}
-	<div class="alert alert-danger" role="alert">
+	<div class="alert alert-success" role="alert">
 	{% for message in messages %}
 		{{ message }}
 	{% endfor %}
-	</div>>
+	</div>
 {% endif %}
 
 {% endwith %}
@@ -60,7 +60,7 @@
 
 	</div>
 </div>
-<script src="{{ url_for('static', filename='js/main.js')}}" ></script>>
+<script src="{{ url_for('static', filename='js/main.js')}}" ></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="{{ url_for('static', filename='js/sweetAlert.js')}}"></script>
 

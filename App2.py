@@ -38,8 +38,9 @@ def agregar():
 		cantidad = request.form['cantidad']
 		reordenar = request.form['reordenar']
 		if nombre =="" or precio=="" or cantidad =="" or reordenar=="":
-			flash("recuerda llenar los datos de los campos")
+			flash("Recuerda llenar los datos de los campos")
 			return redirect(url_for('agregar_dato'))
+
 
 		hoy=date.today()
 		cur = mysql.connection.cursor()
@@ -173,12 +174,14 @@ def generar_reporte_productos():
 
 
 
-###reporte de ventas, de ingresos, de repedidos
-###3b6cde801e0f99106149f275612467d908860171
+URL="http://127.0.0.1:2900/"
+webbrowser.open(URL)
 
 
-if __name__=='__main__': 
-	webbrowser.open_new_tab("http://127.0.0.1:2900/")
+
+
+
+if __name__=='__main__':	
 	app.run(port = 2900, debug = True) #para poder ejecutar en elpuerto y poder reiniciar el servidor
 
 
