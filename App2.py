@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_mysqldb import MySQL
-from datetime import date
+from datetime import datetime
 import webbrowser
 
 app=Flask(__name__)
@@ -44,7 +44,7 @@ def agregar():
 			return redirect(url_for('agregar_dato'))
 
 
-		hoy=date.today()
+		hoy=str(datetime.now())
 		cur = mysql.connection.cursor()
 		cur.execute('select * from articulos where (nombre= %s and precio=%s and reordenar=%s)',(nombre,precio,reordenar))
 		atributo=cur.fetchone()
@@ -120,7 +120,7 @@ def vender():
 	if request.method == 'POST':
 		nombre = request.form['nombre']
 		cantidad = request.form['cantidad']
-		hoy=date.today()
+		hoy=str(datetime.now())
 		cur = mysql.connection.cursor()
 
 
