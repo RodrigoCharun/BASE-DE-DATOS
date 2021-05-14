@@ -3,7 +3,7 @@ from flask_mysqldb import MySQL
 from datetime import datetime
 import webbrowser
 
-app=Flask(__name__)
+app=Flask(__name__) #crea un metodo
 
 
 #nos conectamos a MySQL
@@ -101,8 +101,11 @@ def actualizar_articulo(id):
 @app.route('/eliminar_dato/<string:id>')
 def eliminar_dato(id):
 	cur = mysql.connection.cursor()
+	hoy=str(datetime.now())
+	cur.execute(f'select * from articulos where articulo_id={id}')
+	dato=cur.fetchone()
 	cur.execute(f'DELETE FROM articulos WHERE articulo_id={id}')
-	#cur.execute('INSERT INTO transaccion (fecha,cantidad,tipo) VALUES (%s,%s,"vendido")',(str(hoy),cantidad))#falta el nombre
+	cur.execute('INSERT INTO transaccion (fecha,cantidad,tipo,articulo_nombre,articulo_id) VALUES (%s,%s,%s,%s,%s)',(hoy,dato[3],'Eliminado',dato[1],dato[0]))
 	mysql.connection.commit()
 	flash('Articulo removido satisfactoriamente')
 	return redirect(url_for('Index'))
@@ -122,8 +125,6 @@ def vender():
 		cantidad = request.form['cantidad']
 		hoy=str(datetime.now())
 		cur = mysql.connection.cursor()
-
-
 
 
 		cur.execute('select cantidad from articulos where nombre=%s',[nombre])
@@ -161,14 +162,12 @@ def generar_reporte():
 	return render_template('reporte.html')
 
 
-
 @app.route('/reporte_ventas')
 def generar_reporte_ventas():
 	cur = mysql.connection.cursor()
 	cur.execute('select * from transaccion where tipo="venta"')
 	data = cur.fetchall()
 	return render_template('reporte_ventas.html', transacciones = data)
-
 
 
 @app.route('/reporte_ingresos')
@@ -193,6 +192,22 @@ def generar_reporte_productos():
 	cur.execute('select * from articulos order by nombre')
 	data = cur.fetchall()
 	return render_template('reporte_productos.html', articulos = data)
+
+
+@app.route('/reporte_eliminados')
+def generar_reporte_eliminados():
+	cur = mysql.connection.cursor()
+	cur.execute('select * from transaccion where tipo="Eliminado"')
+	data = cur.fetchall()
+	return render_template('reporte_eliminados.html', transacciones = data)
+
+
+@app.route('/reporte_transacciones')
+def generar_reporte_transacciones():
+	cur = mysql.connection.cursor()
+	cur.execute('select * from transaccion')
+	data = cur.fetchall()
+	return render_template('reporte_transacciones.html', transacciones = data)
 
 
 
