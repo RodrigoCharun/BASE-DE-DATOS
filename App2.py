@@ -62,10 +62,11 @@ def agregar():
 
 
 
-		cur.execute('select articulo_id from articulos where nombre= %s and precio=%s and reordenar=%s',(nombre,precio,reordenar))
-		art_id=cur.fetchall()
-		cur.execute('insert into transaccion (fecha, cantidad, tipo, articulo_nombre, articulo_id) VALUES (%s,%s,%s,%s,%s)',(hoy, cantidad, 'ingreso',nombre,art_id[0]))
-		mysql.connection.commit()		
+		cur.execute('select articulo_id from articulos where nombre=%s',[nombre])
+		art_id=cur.fetchone()
+		cur.execute('insert into transaccion (fecha, cantidad, tipo, articulo_nombre, articulo_id) VALUES (%s,%s,%s,%s,%s)',(hoy, cantidad, 'Ingreso',nombre,art_id[0]))
+		mysql.connection.commit()	
+
 		
 		return redirect(url_for('agregar_dato'))
 ##########################################################################################################################################################################
