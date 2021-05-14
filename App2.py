@@ -74,8 +74,8 @@ def agregar():
 def obtener_articulo(id):
 	cur = mysql.connection.cursor()
 	cur.execute(f'SELECT * FROM articulos WHERE articulo_id={id} ')
-	data = cur.fetchall()
-	return render_template('editar-articulo.html', articulo = data[0])
+	data = cur.fetchone()
+	return render_template('editar-articulo.html', articulo = data)
 
 @app.route('/actualizacion/<id>', methods = ['POST'])
 def actualizar_articulo(id):
@@ -165,7 +165,7 @@ def generar_reporte():
 @app.route('/reporte_ventas')
 def generar_reporte_ventas():
 	cur = mysql.connection.cursor()
-	cur.execute('select * from transaccion where tipo="venta"')
+	cur.execute('select * from transaccion where tipo="venta" order by transaccion_id desc')
 	data = cur.fetchall()
 	return render_template('reporte_ventas.html', transacciones = data)
 
@@ -173,7 +173,7 @@ def generar_reporte_ventas():
 @app.route('/reporte_ingresos')
 def generar_reporte_ingresos():
 	cur = mysql.connection.cursor()
-	cur.execute('select * from transaccion where tipo="ingreso"')
+	cur.execute('select * from transaccion where tipo="ingreso" order by transaccion_id desc')
 	data = cur.fetchall()
 	return render_template('reporte_ingresos.html', transacciones = data)
 
@@ -197,7 +197,7 @@ def generar_reporte_productos():
 @app.route('/reporte_eliminados')
 def generar_reporte_eliminados():
 	cur = mysql.connection.cursor()
-	cur.execute('select * from transaccion where tipo="Eliminado"')
+	cur.execute('select * from transaccion where tipo="Eliminado" order by transaccion_id desc')
 	data = cur.fetchall()
 	return render_template('reporte_eliminados.html', transacciones = data)
 
@@ -205,7 +205,7 @@ def generar_reporte_eliminados():
 @app.route('/reporte_transacciones')
 def generar_reporte_transacciones():
 	cur = mysql.connection.cursor()
-	cur.execute('select * from transaccion')
+	cur.execute('select * from transaccion order by transaccion_id desc')
 	data = cur.fetchall()
 	return render_template('reporte_transacciones.html', transacciones = data)
 
