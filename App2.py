@@ -51,9 +51,6 @@ def agregar():
 		if atributo is None:
 			cur.execute('INSERT INTO articulos (nombre,precio,cantidad,reordenar) VALUES (%s,%s,%s,%s)',(nombre,precio,cantidad,reordenar))
 
-		elif 4<2:
-			flash('No se puede agregar este dato, ya existe uno con ese nombre')
-			return redirect(url_for('agregar_dato'))
 
 		else:
 			cur.execute('''
