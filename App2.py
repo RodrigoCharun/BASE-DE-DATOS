@@ -14,6 +14,8 @@ mysql=MySQL(app)
 
 app.secret_key = 'mysecretkey' #permite agregar mensaje
 
+
+
 ##############################################################################################################################
 @app.route('/')  #creamos nuestra primera ruta
 def Index():
@@ -45,8 +47,14 @@ def agregar():
 		hoy=date.today()
 		cur = mysql.connection.cursor()
 		cur.execute('select * from articulos where (nombre= %s and precio=%s and reordenar=%s)',(nombre,precio,reordenar))
-		if cur.fetchone() is None:
+		atributo=cur.fetchone()
+		if atributo is None:
 			cur.execute('INSERT INTO articulos (nombre,precio,cantidad,reordenar) VALUES (%s,%s,%s,%s)',(nombre,precio,cantidad,reordenar))
+
+		elif 4<2:
+			flash('No se puede agregar este dato, ya existe uno con ese nombre')
+			return redirect(url_for('agregar_dato'))
+
 		else:
 			cur.execute('''
 			UPDATE articulos
