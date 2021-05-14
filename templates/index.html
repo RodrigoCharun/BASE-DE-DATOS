@@ -51,7 +51,7 @@
 					<td>{{articulo.4}}</td>
 					<td>
 						<a href="/editar_dato/{{articulo.0}}" class="btn btn-secondary">EDITAR</a>
-						<a href="/eliminar_dato/{{articulo.0}}" class="btn btn-danger btn-delete">ELIMINAR</a>
+						<a href="/eliminar_dato/{{articulo.0}}" onclick="return confirm('¿Estas seguro de eliminar?')" class="btn btn-danger btn-delete">ELIMINAR</a>
 					</td>
 				</tr>
 				{% endfor %}
