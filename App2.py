@@ -122,18 +122,36 @@ def vender():
 		cantidad = request.form['cantidad']
 		hoy=date.today()
 		cur = mysql.connection.cursor()
-		cur.execute('''
-			UPDATE articulos
-			SET
-				cantidad =(SELECT cantidad FROM articulos where nombre=%s)-%s 
-			WHERE nombre = %s 
-			''',(nombre,cantidad,nombre))
 
-		cur.execute('select articulo_id from articulos where nombre=%s',[nombre])
-		art_id=cur.fetchone()
-		cur.execute('insert into transaccion (fecha, cantidad, tipo, articulo_nombre, articulo_id) VALUES (%s,%s,%s,%s,%s)',(hoy, cantidad, 'venta',nombre,art_id[0]))
-		mysql.connection.commit()	
-		return redirect(url_for('vender_dato'))
+
+
+
+		cur.execute('select cantidad from articulos where nombre=%s',[nombre])
+		can=cur.fetchone()[0]
+
+		if cantidad=="":
+			flash("No ha ingresado cantidad")
+			return redirect(url_for('vender_dato'))
+
+
+		elif int(cantidad)>int(can):
+			flash("La cantidad ingresada es mayor al stock ")
+			return redirect(url_for('vender_dato'))
+
+
+		else: 
+			cur.execute('''
+				UPDATE articulos
+				SET
+					cantidad =(SELECT cantidad FROM articulos where nombre=%s)-%s 
+				WHERE nombre = %s 
+				''',(nombre,cantidad,nombre))
+
+			cur.execute('select articulo_id from articulos where nombre=%s',[nombre])
+			art_id=cur.fetchone()
+			cur.execute('insert into transaccion (fecha, cantidad, tipo, articulo_nombre, articulo_id) VALUES (%s,%s,%s,%s,%s)',(hoy, cantidad, 'venta',nombre,art_id[0]))
+			mysql.connection.commit()	
+			return redirect(url_for('vender_dato'))
 
 
 #######################################################################################################################################################################
